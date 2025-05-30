@@ -1,5 +1,9 @@
 {
   "name": "@rayriffy/grist-api",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "version": "0.1.7",
   "description": "NodeJS client for interacting with Grist",
   "main": "dist/index.js",
