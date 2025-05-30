@@ -62,6 +62,9 @@ export interface IGristCallConfig {
   // Split large requests into smaller one, each limited to chunkSize rows. Set to Infinity to
   // disable this. The default value is 500. Grist may reject requests that are too large.
   chunkSize?: number;
+
+  // Additional headers to send with each request.
+  headers?: Record<string, string>;
 }
 
 /**
@@ -73,6 +76,7 @@ export class GristDocAPI {
   private _server: string;
   private _apiKey: string|null;
   private _chunkSize: number;
+  private _headers: Record<string, string>;
 
   /**
    * Create a GristDocAPI object. You may specify either a doc URL, or just the doc ID (the part
@@ -92,6 +96,7 @@ export class GristDocAPI {
     } else {
       this._docId = docUrlOrId;
     }
+    this._headers = options.headers || {};
   }
 
   /**
@@ -289,6 +294,7 @@ export class GristDocAPI {
           ...authHeader,
           'Content-Type': 'application/json',     // Ignored when using FormData
           'Accept': 'application/json',
+          ...this._headers,
         },
       };
       debugReq("Request", request);

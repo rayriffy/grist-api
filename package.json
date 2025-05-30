@@ -1,5 +1,5 @@
 {
-  "name": "grist-api",
+  "name": "@rayriffy/grist-api",
   "version": "0.1.7",
   "description": "NodeJS client for interacting with Grist",
   "main": "dist/index.js",
